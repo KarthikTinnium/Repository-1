@@ -1,0 +1,124 @@
+print("WELCOME TO THE HANGMAN GAME! \n You have 6 lives to find the hidden word\n Don't leave him hanging!\
+\nFill in the ✱\n")
+import random
+L=["football","basketball","tennis","cricket","volleyball","archery","hockey",
+   "badminton","swimming"]
+num=random.randint(0,len(L)-1)
+word=L[num]
+t=""
+n=""
+i=6
+mum=random.randint(0,len(word)-1)
+for ch in word:
+    t+="✱"
+print(t)
+n=t
+f=[]
+r=0
+while i>0:
+    if r==0:
+        s=input("\nGuess a letter!\n")
+        flag=0
+        r=1
+    else:
+        s=input("\nGuess another letter!\n")
+        flag=0
+    if s in f:
+        print("\nYou have already guessed the letter. Try a different one!\n")
+        continue
+    else:
+        f+=[s]   
+        for j in range(0,len(t)):
+            if word.count(s)>1:
+                if word[j]==s:
+                    flag=1
+                    n=t[0:j]+s+t[j+1:]
+                    t=n
+                if j==len(t)-1:
+                    print(n)
+                    print("\nGreat Guess!\n")
+            elif word[j]==s:
+                flag=1
+                n=t[0:j]+s+t[j+1:]
+                t=n
+                print(n)
+                print("Great Guess!")
+            if n==word:
+                print("You guessed the word! Well done!")
+                break
+        if n==word:
+            break
+        if flag==0:
+            if i==2:
+                print('''\t\t
+    +---+
+    |   |
+    O   |
+   /|   |
+   / \  |
+          |
+=========''')
+            elif i==3:
+                print('''\t\t
+    +---+
+    |   |
+    O   |
+    |    |
+   / \  |
+          |
+=========''')
+            elif i==4:
+                print('''\t\t
+    +---+
+    |   |
+    O   |
+    |    |
+   /     |
+          |
+=========''')
+            elif i==5:
+                print('''\t\t
+    +---+
+    |   |
+    O   |
+    |    |
+          |
+          |
+=========''')
+            elif i==6:
+                print('''\t\t
+    +---+
+    |   |
+    O   |
+         |
+         |
+         |
+=========''')
+            if i-1==1:
+                i-=1
+                print("\nOops! The letter wasn't found! Try again!\n")
+                print("\nYou have one last life. Make it count!\n")
+                print(n)
+            else:
+                i-=1
+                print("\nOops! The letter wasn't found! Try again!\n")
+                print("\nYou have",i,"lives left\n")
+                print(n)
+else:
+    print('''\t\t
+            +---+
+            |   |
+            O   |
+          /|\  |
+           / \  |
+                  |
+        =========''')
+    print("\n\n Oh no! You are out of lives :( Try again next time\n\n")
+    print("The word was:",word)
+
+                          
+        
+                
+        
+            
+    
